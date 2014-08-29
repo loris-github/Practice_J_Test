@@ -1,5 +1,10 @@
+package com.test.thread;
 import java.util.*;
+/*
+1.练习线程的使用
+2.一个实现了Runnable 接口的类 要想实现打断，最好外边套一个Thread以便方法interrupt()调用
 
+*/
 public class Practice_Thread_001 {
 
 	public static void main(String[] args) {
