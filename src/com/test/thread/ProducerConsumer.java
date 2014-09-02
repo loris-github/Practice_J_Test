@@ -43,7 +43,7 @@ class SyncStack{
 	}
 	
 	public synchronized WoTou pop() {
-		if(index == arrWT.length){
+		if(index == 0){
 			try {
 				this.wait();
 			} catch (InterruptedException e) {
@@ -69,6 +69,7 @@ class Producer implements Runnable{
 		for(int i = 0;i <20;i++){
 			WoTou wt = new WoTou(i);
 			ss.push(wt);
+			System.out.println("生产窝头: "+wt);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -90,7 +91,7 @@ class Consumer implements Runnable{
 	public void run() {
 		for(int i = 0;i <20;i++){
 			WoTou wt = ss.pop();
-		System.out.println(wt);
+		System.out.println("吃掉窝头： "+wt);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
