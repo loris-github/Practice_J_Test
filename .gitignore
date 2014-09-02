@@ -35,7 +35,5 @@ Icon
 .Spotlight-V100
 .Trashes
 
-*.classpath
-*.project
-*.prefs
+
 *.class
