@@ -10,17 +10,20 @@ public class TestFileStream {
 	boolean writeFinish = false;
 	boolean readFinish = false;
 	
-	String addressRead = "D:\\Devuser\\Desktop\\f.html";
+	String addressRead = "D:\\MyCode\\myeclipse workspace\\Test\\src\\FileDemo.java";
 	String addreassWrite = "D:\\Devuser\\Desktop\\f1.html";
-	
+		
 	BufferedReader br = null;
 	BufferedOutputStream bos = null;
 	
 	public void readFile(String address){
-		try {
-			br = new BufferedReader(new FileReader(address));
-			reading = true;
-		} catch (FileNotFoundException e) {
+			try {
+				br = new BufferedReader(new InputStreamReader(new FileInputStream(address),"UTF-8"));
+				reading = true;
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}			
+		 catch (FileNotFoundException e) {
 			System.out.println("木有找到文件 ╮(╯▽╰)╭");
 			System.exit(-1);
 		}
