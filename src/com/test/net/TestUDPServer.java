@@ -9,8 +9,12 @@ public class TestUDPServer {
 		byte[] byt = new byte[1024];
 		DatagramSocket dgs = new DatagramSocket(8888);
 		DatagramPacket dgp = new DatagramPacket(byt,byt.length);
-		dgs.receive(dgp);
-		DataInputStream dos = new DataInputStream(dgs); 
+		
+		while(true){
+			dgs.receive(dgp);
+			System.out.println(new String(byt,0,dgp.getLength()));
+		}
+		
 		
 	}
 
