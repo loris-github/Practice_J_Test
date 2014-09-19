@@ -1,0 +1,60 @@
+package com.test.xml;
+
+import java.io.File;  
+import java.util.Iterator;  
+import java.util.List;  
+  
+import org.jdom2.Document;  
+import org.jdom2.Element;  
+import org.jdom2.input.SAXBuilder;  
+  
+public class testJDOM {  
+  
+    public static void main(String[] args) {  
+  
+        try {  
+            File file = new File("D:\\MyCloud\\GIT\\myeclipse workspace\\Practice_J_Test\\src\\AirPortLine.xml");  
+            SAXBuilder builder = new SAXBuilder();  
+            Document doc = builder.build(file);  
+  
+            parseJDOM(doc);// 解析XML文档  
+  
+        } catch (Exception e) {  
+            System.out.println("Can't read the file");  
+        }  
+    }  
+  
+    // 解析XML文档  
+    private static void parseJDOM(Document doc) {  
+        Element root = doc.getRootElement();  
+        List lineList = root.getChildren("line");// 也可使用root.getChildren()  
+        for (Iterator iter = lineList.iterator(); iter.hasNext();) {  
+            Element lineElement = (Element) iter.next();// 获取<line>元素  
+  
+            String lid = lineElement.getAttributeValue("lid");// 获取<line>元素的lid属性值  
+            String num = lineElement.getAttributeValue("num");// 获取<line>元素的num属性值  
+  
+            System.out.println("==lid:" + lid);  
+            System.out.println("==num:" + num);  
+  
+            Element idElement = lineElement.getChild("id");// 获得<line>下<id>标签下的子元素  
+            String id = idElement.getText();// // 获得<line>下<id>标签下的子元素值  
+            System.out.println("==路线id:" + id);  
+  
+            List stationList = lineElement.getChildren("station");// 获得<line>下<station>列表  
+            for (Iterator subIter = stationList.iterator(); subIter.hasNext();) {  
+                Element stationElement = (Element) subIter.next();// 获取<station>元素  
+  
+                Element sidElement = stationElement.getChild("sid");// 获得<station>下<sid>标签下的子元素  
+                Element snameElement = stationElement.getChild("sname");// 获得<station>下<sname>标签下的子元素  
+                String sid = sidElement.getText();// 获得<station>下<sid>标签下的子元素值  
+                String sname = snameElement.getText();// 获得<station>下<sname>标签下的子元素值  
+  
+                System.out.println("==路线sid:" + sid);  
+                System.out.println("==路线sname:" + sname);  
+            }  
+  
+        }  
+    }  
+  
+}  
